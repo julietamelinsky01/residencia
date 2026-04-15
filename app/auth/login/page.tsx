@@ -1,6 +1,7 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Building2, Lock, Mail, ShieldCheck } from 'lucide-react'
@@ -40,34 +41,47 @@ export default function LoginPage() {
   return (
     <div className="app-shell min-h-[calc(100svh-56px)] px-4 py-8">
       <div className="mx-auto grid max-w-5xl items-stretch gap-4 lg:grid-cols-[1.1fr_1fr]">
-        <section className="surface-card animate-enter p-8">
-          <div className="inline-flex rounded-xl bg-primary/10 p-3 text-primary">
-            <Building2 size={22} />
+        <section className="surface-card animate-enter brand-glow overflow-hidden p-8">
+          <div className="brand-gradient absolute inset-x-0 top-0 h-1" />
+          <div className="inline-flex items-center gap-3 rounded-xl border border-border/70 bg-card px-3 py-2">
+            <div className="relative h-8 w-8 overflow-hidden rounded-full border border-border/70">
+              <Image src="/branding/logo-main.jpg" alt="La Meli" fill className="object-cover" />
+            </div>
+            <span className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">La Meli</span>
           </div>
-          <h1 className="mt-4 text-3xl font-semibold tracking-tight">Gestión de residencia estudiantil</h1>
+          <h1 className="mt-4 text-3xl font-semibold tracking-tight">Tu 2026 empieza acá</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Plataforma unificada para pagos, comprobantes, gastos, arreglos, tareas de convivencia y avisos internos.
+            Plataforma de gestión para cuotas, envíos, validaciones y documentación de la residencia.
           </p>
 
-          <div className="mt-6 space-y-3">
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            <div className="relative h-28 overflow-hidden rounded-xl border border-border/70">
+              <Image src="/branding/post-2026.jpg" alt="Campaña La Meli 2026" fill className="object-cover" />
+            </div>
+            <div className="relative h-28 overflow-hidden rounded-xl border border-border/70">
+              <Image src="/branding/post-resena.jpg" alt="Reseñas La Meli" fill className="object-cover" />
+            </div>
+          </div>
+
+          <div className="mt-4 space-y-3">
             <div className="flex items-center gap-3 rounded-xl border border-border/70 p-3">
-              <ShieldCheck size={18} className="text-emerald-600" />
+              <ShieldCheck size={18} className="text-primary" />
               <div>
                 <p className="text-sm font-medium">Acceso por rol</p>
                 <p className="text-xs text-muted-foreground">Administrador, encargado y residente ven solo lo que corresponde.</p>
               </div>
             </div>
             <div className="flex items-center gap-3 rounded-xl border border-border/70 p-3">
-              <Lock size={18} className="text-sky-600" />
+              <Building2 size={18} className="text-accent" />
               <div>
-                <p className="text-sm font-medium">Operación segura</p>
-                <p className="text-xs text-muted-foreground">Sesión protegida y permisos aplicados en backend.</p>
+                <p className="text-sm font-medium">Archivo organizado</p>
+                <p className="text-xs text-muted-foreground">Comprobantes, facturas y constancias en un solo lugar.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="surface-card animate-enter stagger-1 p-8">
+        <section className="surface-card animate-enter stagger-1 brand-glow p-8">
           <h2 className="text-2xl font-semibold tracking-tight">Ingresar</h2>
           <p className="mt-1 text-sm text-muted-foreground">Usá tu cuenta de la residencia para continuar.</p>
 
@@ -104,7 +118,7 @@ export default function LoginPage() {
 
             {error && <p className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700 dark:border-rose-900/50 dark:bg-rose-900/20 dark:text-rose-300">{error}</p>}
 
-            <button disabled={loading} className="h-11 w-full rounded-lg bg-primary text-sm font-semibold text-primary-foreground transition hover:opacity-95 disabled:opacity-60">
+            <button disabled={loading} className="brand-gradient h-11 w-full rounded-lg text-sm font-semibold text-primary-foreground transition hover:opacity-95 disabled:opacity-60">
               {loading ? 'Ingresando...' : 'Ingresar al sistema'}
             </button>
           </form>

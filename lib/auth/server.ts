@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 
-export type AppRole = 'administrador' | 'encargado' | 'residente'
+export type AppRole = 'administrador' | 'encargado' | 'residente' | 'gerente'
 
 export async function getServerAuth() {
   const supabase = await createClient()

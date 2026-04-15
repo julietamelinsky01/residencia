@@ -7,7 +7,16 @@ export async function POST(request: NextRequest) {
   if (!ensureRole(role, ['administrador', 'encargado'])) return forbidden()
 
   const body = await request.json()
-  const { categoria_id, monto, fecha, descripcion, habitacion_id, espacio_comun_id } = body
+  const {
+    categoria_id,
+    monto,
+    fecha,
+    descripcion,
+    habitacion_id,
+    espacio_comun_id,
+    archivo_factura,
+    nombre_factura,
+  } = body
 
   if (!monto || !fecha || !descripcion) {
     return badRequest('Faltan campos requeridos de gasto')
@@ -22,6 +31,8 @@ export async function POST(request: NextRequest) {
       descripcion,
       habitacion_id: habitacion_id ?? null,
       espacio_comun_id: espacio_comun_id ?? null,
+      archivo_factura: archivo_factura ?? null,
+      nombre_factura: nombre_factura ?? null,
       cargado_por: user.id,
     })
     .select('id')
